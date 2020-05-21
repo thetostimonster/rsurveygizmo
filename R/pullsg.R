@@ -44,13 +44,13 @@
 #' @export
 
 
-pullsg <- function(surveyid, api, completes_only=TRUE, verbose=TRUE, var_name_append=TRUE, mergecampaign=FALSE, delete_sys_vars=FALSE, keep_geo_vars=TRUE, clean=FALSE, reset_row_names=TRUE, small=FALSE) {
+pullsg <- function(surveyid, api, completes_only=TRUE, verbose=TRUE, var_name_append=TRUE, mergecampaign=FALSE, delete_sys_vars=FALSE, keep_geo_vars=TRUE, clean=FALSE, reset_row_names=TRUE, small=FALSE, domain='com') {
 
 	options(stringsAsFactors=FALSE)
 	if(small & mergecampaign==FALSE) warning('\nThe "small" parameter should be false when "mergecampaign" is false. This parameter was ignored.')
 	# Set hard-coded URL parameters
 	token <- paste0('?api_token=', api) # Must be in the first trailing URL position
-	url      <- 'https://restapi.surveygizmo.com/v4/survey/'
+	url      <- paste('https://restapi.surveygizmo.',domain,'/v4/survey/', sep='')
 	response <- "/surveyresponse/"
 	question <- "/surveyquestion/"
 	pages    <- "&page="
